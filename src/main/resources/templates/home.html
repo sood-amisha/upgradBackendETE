@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Information</title>
+</head>
+
+<body>
+<div id='header'>
+    <div>User Information</div>
+</div>
+<br>
+<form th:object="${post}" th:action="@{/posts/create}" method="POST">
+    <div id='formItems'>
+        <label>Name</label>
+        <input type="text" name="name" id="name">
+
+        <label>Age</label>
+        <input type="number" name="age" id="age">
+
+        <label>Email</label>
+        <input type="email" name="email" id="email">
+
+        <label>Address</label>
+        <input type="text" name="address" id="address">
+
+        <label>Phone number</label>
+        <input type="number" name="phone" id="phone">
+
+        <input type="submit" value="Submit">
+
+    </div>
+</form>
+
+<div id="formItems2">
+    <post id="posts"th:each="p : ${posts}">
+
+        <div>
+            <label> Name: </label>
+            <h2 th:text="${p.name}"></h2>
+
+            <label> Age: </label>
+            <h2 th:text="${p.age}"></h2>
+
+            <label> Email:</label>
+            <h2 th:text="${p.email}"></h2>
+
+            <label> Address: </label>
+            <h2 th:text="${p.address}"></h2>
+
+            <label> Phone:</label>
+            <h2 th:text="${p.phone}"></h2>
+
+        </div>
+        <div>
+            <form th:action="@{/deletepost(postId=${p.id})}" th:method="delete">
+                <input type="submit" value="DELETE" />
+            </form>
+        </div>
+    </post>
+</div>
+</body>
+
+</html>
